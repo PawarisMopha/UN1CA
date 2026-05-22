@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           submodules: 'recursive'
 
@@ -82,14 +82,13 @@ jobs:
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/make_rom.sh
 
-     - name: Upload ROM Artifact
-       uses: actions/upload-artifact@v4
-       with:
-         name: ROM-${{ matrix.target }}
-         path: |
-           *.zip
-           out/*.zip
-           unica/*.zip
-           target/*/*.zip
-           scripts/internal/*.zip
-
+      - name: Upload ROM Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ROM-${{ matrix.target }}
+          path: |
+            *.zip
+            out/*.zip
+            unica/*.zip
+            target/*/*.zip
+            scripts/internal/*.zip
