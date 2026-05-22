@@ -81,3 +81,15 @@ jobs:
         run: |
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/make_rom.sh
+
+     - name: Upload ROM Artifact
+       uses: actions/upload-artifact@v4
+       with:
+         name: ROM-${{ matrix.target }}
+         path: |
+           *.zip
+           out/*.zip
+           unica/*.zip
+           target/*/*.zip
+           scripts/internal/*.zip
+
