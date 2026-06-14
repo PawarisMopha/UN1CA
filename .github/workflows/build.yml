@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [a52sxq, a53x, a73xq, b0q, g0q, m52xq, o1s, p3s, r0q, r9s, t2s]
+        target: [b0q, g0q, r0q]
 
     steps:
       - name: Checkout repo
@@ -81,3 +81,11 @@ jobs:
         run: |
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/make_rom.sh
+
+      - name: Upload Build Result
+        uses: actions/upload-artifact@v4
+        with:
+          name: Built-ROM-${{ matrix.target }}
+          path: |
+            out/*.zip
+            
